@@ -3,8 +3,12 @@ import PropTypes from 'prop-types'
 
 import "./styles/Track.css";
 
-// Here we use destructuring to extract the props into separate variables
+// Here we use destructuring to extract the props into separate variables...unpack props
 // See https://wesbos.com/destructuring-objects/
+
+//const Track = (props)
+//returns props w/ css & checkbox, buttons-switching, top,
+//new prop added -> favorite = props.favorite
 const Track = ({title, artist, playtime, albumart, favorite}) => {
   return (
     <li className="track">
@@ -30,6 +34,7 @@ const Track = ({title, artist, playtime, albumart, favorite}) => {
     </li>
   );
 };
+
 
 Track.propTypes = {
   title: PropTypes.string,
