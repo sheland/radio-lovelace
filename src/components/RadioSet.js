@@ -13,35 +13,43 @@ class RadioSet extends Component {
     this.state = {
       morningSide: props.tracks.slice(0, props.tracks.length / 2),
       eveningSide: props.tracks.slice(props.tracks.length / 2, props.tracks.length),
+      index: props.tracks
     };
   }
 
-    onIconClick = (index, playlist) => {
-      if(playlist == "morningSide") {
-        const song = this.state.morningSide[index];
-        console.log(song);
-        console.log(song.favorite);
+  // onIconClick = (index, playlist) => {
+  //   let song;
+  //   if(playlist === "morningSide") {
+  //     song = this.state.morningSide[index];
+  //     console.log(song);
+  //     console.log(song.favorite);
+  //
+  //     if(song.favorite === undefined || song.favorite === false) {
+  //       song.favorite = true;
+  //     } else {
+  //       song.favorite = false;
+  //     }
+  //   }
+  //
+  //   if(playlist == "eveningSide") {
+  //     song = this.state.eveningSide[index];
+  //   };
+  //
+  //   console.log(song);
+  //   console.log(song.favorite);
+  // };
 
-        if(song.favorite == undefined || song.favorite == false) {
-          song.favorite = true;
-        }
-        else {
-          song.favorite = false;
-        }
-      }
+  onChange = (index, playlist) => {
+    console.log(index, playlist);
 
 
-      if(playlist == "eveningSide") {
-        const song = this.state.eveningSide[index];
-    };
-        console.log(song);
-        console.log(song.favorite);
-    };
-  };
+
+
+  }
 
   render() {
-    this.onIconClick(index, "morningSide");
-    console.log(`Radio set for ${this.state} tracks`);
+    // this.onIconClick(index, "morningSide");
+    // console.log(`Radio set for ${this.state} tracks`);
   // const playlists = {
   //   morningTracks: props.tracks.slice(0, props.tracks.length / 2),
   //   eveningTracks: props.tracks.slice(props.tracks.length / 2, props.tracks.length)
@@ -54,13 +62,17 @@ class RadioSet extends Component {
           <Playlist
             side="Morning"
             tracks={this.state.morningSide}
-            favoriteCallback={this.onIconClick}
+            favoriteCallback={this.testFavorite}
+            topCallback={this.onChange}
+            playlist={"Morning"}
             />
           <Playlist
             side="Evening"
             // tracks={playlists.eveningTracks}
             tracks={this.state.eveningSide}
             favoriteCallback={this.onIconClick}
+            topCallback={this.onChange}
+            playlist={"Evening"}
 
           />
         </section>
@@ -69,8 +81,8 @@ class RadioSet extends Component {
   }
 }
 
-RadioSet.propTypes = {
-  tracks: PropTypes.array.isRequired,
-}
+// RadioSet.propTypes = {
+//   tracks: PropTypes.array.isRequired,
+// }
 
 export default RadioSet;

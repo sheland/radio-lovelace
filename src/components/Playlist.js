@@ -39,14 +39,18 @@ const Playlist = (props) => {
   const trackCount = tracks.length;
   //length of time of all tracks
   const playtime = calculatePlayTime(tracks);
+  const topCallback= props.topCallback;
+  const playlist = props.playlist;
   const trackElements = tracks.map((track, i) => {
-    const props = {title: track.title, artist: track.artist, playtime: track.playtime, albumart: track.albumart};
+    const props = {title: track.title, artist: track.artist, playtime: track.playtime, albumart: track.albumart, topCallback: topCallback};
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
     //passes the whole props object
     return (
       <Track
         key={i}
+        index={i}
+        playlist={playlist}
         {...props} />
         // console.log(<Track {...props} />,)
         // {...track}
