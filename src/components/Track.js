@@ -16,14 +16,11 @@ class Track extends Component {
       favorite: false
     };
   }
-  //toggles
+  //toggles favorite state
   onChangeFavorite = () => {
     this.setState({ favorite: !this.state.favorite });
   }
 
-  handleTopclick = () => {
-    this.props.topCallback(this.props.index, this.props.playlist)
-  }
 
   render() {
     return (
@@ -40,7 +37,7 @@ class Track extends Component {
         <p className="track--playtime">{this.props.playtime}</p>
         <button
           className="track--control track--to-top"
-          onClick ={this.handleTopclick}
+          onClick ={this.props.onChangeTop}
 
           >
           <span role="img" aria-label="send to top">🔝</span>
@@ -64,9 +61,11 @@ Track.propTypes = {
   playtime: PropTypes.string,
   albumart: PropTypes.string,
   favorite: PropTypes.bool,
-  topCallback: PropTypes.func,
   index: PropTypes.number,
   playlist: PropTypes.string,
+  onChangeFavorite: PropTypes.func,
+  toChangeTopCallback: PropTypes.func,
+
 }
 
 export default Track;

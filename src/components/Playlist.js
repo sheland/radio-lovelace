@@ -34,15 +34,16 @@ const calculatePlayTime = (tracks) => {
 //functional conponent
 //props = {side: "Evening", tracks: Array(43)}
 const Playlist = (props) => {
-  const tracks = props.tracks;
+  const {tracks, playlist, onChangeTop} = props
+  //const tracks = props.tracks;
   //# total tracks
   const trackCount = tracks.length;
   //length of time of all tracks
   const playtime = calculatePlayTime(tracks);
-  const topCallback= props.topCallback;
-  const playlist = props.playlist;
+  //const onChangeTop= props.onChangeTop;
+  //const playlist = props.playlist;
   const trackElements = tracks.map((track, i) => {
-    const props = {title: track.title, artist: track.artist, playtime: track.playtime, albumart: track.albumart, topCallback: topCallback};
+    const props = {title: track.title, artist: track.artist, playtime: track.playtime, albumart: track.albumart, onChangeTop: onChangeTop};
     // We use "spread syntax" here to pass in all the properties of
     // the variable 'track' as props. Go look it up!
     //passes the whole props object
@@ -51,7 +52,10 @@ const Playlist = (props) => {
         key={i}
         index={i}
         playlist={playlist}
-        {...props} />
+        {...props}
+        onChangeTop={() => onChangeTop(i, tracks)}
+
+      />
         // console.log(<Track {...props} />,)
         // {...track}
     );
@@ -76,6 +80,7 @@ const Playlist = (props) => {
 Playlist.propTypes = {
   tracks: PropTypes.array,
   side: PropTypes.string,
+  onChangeTop: PropTypes.func,
 }
 
 export default Playlist;

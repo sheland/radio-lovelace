@@ -15,7 +15,10 @@ class RadioSet extends Component {
       eveningSide: props.tracks.slice(props.tracks.length / 2, props.tracks.length),
       index: props.tracks
     };
+
   }
+
+
 
   // onIconClick = (index, playlist) => {
   //   let song;
@@ -39,8 +42,22 @@ class RadioSet extends Component {
   //   console.log(song.favorite);
   // };
 
-  onChange = (index, playlist) => {
+  //SendtoTop
+  onChangeTop = (index, playlist) => {
     console.log(index, playlist);
+
+    const track = playlist[index];
+    playlist.splice(index, 1); //insert at index, delete no elements, insert 1
+    playlist.unshift(track); //adds item in beginning of []
+
+    const newState = {playlist, ...this.state}; //all props
+
+    this.setState(newState);
+
+    // let newTracks = this.state.tracks;
+    // const topSong = newTracks.find(song.id;
+    //
+    // this.setState({tracks: newTracks});
 
 
 
@@ -62,16 +79,14 @@ class RadioSet extends Component {
           <Playlist
             side="Morning"
             tracks={this.state.morningSide}
-            favoriteCallback={this.testFavorite}
-            topCallback={this.onChange}
+            onChangeTop={this.onChangeTop}
             playlist={"Morning"}
             />
           <Playlist
             side="Evening"
             // tracks={playlists.eveningTracks}
             tracks={this.state.eveningSide}
-            favoriteCallback={this.onIconClick}
-            topCallback={this.onChange}
+            onChangeTop={this.onChangeTop}
             playlist={"Evening"}
 
           />
